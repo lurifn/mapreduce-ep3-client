@@ -34,15 +34,26 @@ A execução do programa deverá poder ser realizada com um número arbitrário 
 A estrutura criada na operação d) do mapper permite, dada uma URL X, conhecer as URLs
 que X aponta.
 Por exemplo, vamos supor que o mapper1 baixou e processou o www.site1.br, enviando ao reducer a seguinte estrutura:
+
 www.site1.br: {www.site2.br, www.site3.br}
+
 O mapper2 baixou e processou o www.site2.br enviando ao reducer a seguinte estrutura:
+
 www.site2.br: {www.site3.br, www.site4.br}
+
 E o mapper3 baixou e processou o www.site3.br, enviando ao reducer a seguinte estrutura:
+
 www.site3.br: {www.site4.br}
+
 Se quiser ver os apontamentos como um grafo, o exemplo acima define a figura abaixo.
 Já o índice invertido criado na operação c) do reducer permite, dada uma URL Y, conhecer que URLs apontam para Y (exatamente o contrário da estrutura do mapper). Para o exemplo acima, o índice invertido de links (ordenado pela quantidade de apontamentos) será:
+
 www.site3.br: {www.site1.br, www.site2.br} // tamanho 2
+
 www.site4.br: {www.site2.br, www.site3.br} // tamanho 2
+
 www.site2.br: {www.site1.br} // tamanho 1
+
 www.site1.br: {} // tamanho 0
+
 Note que o www.site4.br não foi baixado por nenhum mapper, porém apareceu na lista pelos link extraídos no item c).
