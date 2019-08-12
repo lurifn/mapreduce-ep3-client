@@ -16,7 +16,7 @@ class TCPClient {
 		this.socket = new Socket(serverAddress, serverPort);
 		this.scanner = new Scanner(System.in);
 	}
-	
+
 	private void stop() throws IOException {
 		socket.close();
 	}
@@ -24,9 +24,9 @@ class TCPClient {
 	private void start() throws Exception {
 		// lê o json com a lista de urls
 		String urls = readFileAsString("lista/lista.txt");
-		System.out.println("Enviando urls: "+urls);
-		
-		//envia as urls pro coordenador
+		System.out.println("Enviando urls: " + urls);
+
+		// envia as urls pro coordenador
 		PrintWriter out = new PrintWriter(this.socket.getOutputStream(), true);
 		out.println(urls);
 		out.flush();
@@ -41,13 +41,13 @@ class TCPClient {
 	public static void main(String[] args) throws Exception {
 		System.out.println("CLIENT");
 		String host;
-		
-		//pode receber o host do coordenador por argumento ou não
-		if(args.length > 0)
+
+		// pode receber o host do coordenador por argumento ou não
+		if (args.length > 0)
 			host = args[0];
 		else
 			host = "localhost";
-		
+
 		// abre conexao com o coordenador
 		TCPClient client = new TCPClient(InetAddress.getLocalHost(), 8080);
 
@@ -55,8 +55,11 @@ class TCPClient {
 
 		// faz a solicitação
 		client.start();
-		
-		//fecha o socket
+
+		// fecha o socket
 		client.stop();
+
+		// inicia TCP de resposta
+		TCPServer.inicia();
 	}
 }

@@ -1,1 +1,1 @@
-www.site1.br,www.site2.br,www.site3.br,www.site4.br,www.site5.br,www.site6.br
+https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html,https://jsoup.org/cookbook/extracting-data/example-list-links,https://aws.amazon.com/pt/education/awseducate/,https://www.geeksforgeeks.org/stringbuilder-append-method-in-java-with-examples/,https://stackoverflow.com/,https://www.baeldung.com/jackson-collection-array
