@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 class TCPClient {
 	private Socket socket;
 	private Scanner scanner;
@@ -24,11 +26,19 @@ class TCPClient {
 	private void start() throws Exception {
 		// lê o json com a lista de urls
 		String urls = readFileAsString("lista/lista.txt");
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		Dto dto = new Dto();
+		dto.setHost(InetAddress.getLocalHost().getHostAddress());
+		dto.setPort(8083);
+		dto.setUrls(urls);
+		
 		System.out.println("Enviando urls: " + urls);
 
 		// envia as urls pro coordenador
 		PrintWriter out = new PrintWriter(this.socket.getOutputStream(), true);
-		out.println(urls);
+		out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dto));
 		out.flush();
 	}
 
