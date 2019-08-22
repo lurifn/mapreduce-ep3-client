@@ -40,7 +40,7 @@ public class TCPServer {
 	}
 
 	public static void inicia() throws Exception {
-		TCPServer app = new TCPServer(null);
+		TCPServer app = new TCPServer("ec2-3-91-11-161.compute-1.amazonaws.com");
 
 		System.out.println(
 				"\r\nRunning Server: " + "Host=" + app.getSocketAddress().getHostAddress() + " Port=" + app.getPort());

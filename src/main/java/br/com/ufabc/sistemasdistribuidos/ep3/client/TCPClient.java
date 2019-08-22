@@ -24,7 +24,7 @@ class TCPClient {
 	}
 
 	private void start() throws Exception {
-		// lê o json com a lista de urls
+		// lï¿½ o json com a lista de urls
 		String urls = readFileAsString("lista/lista.txt");
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -52,18 +52,20 @@ class TCPClient {
 		System.out.println("CLIENT");
 		String host;
 
-		// pode receber o host do coordenador por argumento ou não
+		// pode receber o host do coordenador por argumento ou nï¿½o
 		if (args.length > 0)
 			host = args[0];
 		else
 			host = "localhost";
 
 		// abre conexao com o coordenador
-		TCPClient client = new TCPClient(InetAddress.getLocalHost(), 8080);
+		// ip e porta do coordenador 
+		
+		TCPClient client = new TCPClient(InetAddress.getByName("ec2-3-90-115-100.compute-1.amazonaws.com"), 8080);
 
 		System.out.println("\r\nConnected to Server: " + client.socket.getInetAddress());
 
-		// faz a solicitação
+		// faz a solicitaï¿½ï¿½o
 		client.start();
 
 		// fecha o socket
